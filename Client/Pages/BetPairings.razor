@@ -1,3 +1,73 @@
 ﻿@page "/betpairings"
-
+@using CloudClassProject.Shared
+@inject HttpClient http
 <h1>Bet Pairings</h1>
+
+@if (betPairings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Bookmaker 1</th>
+                <th>Bet 1</th>
+                <th>Odds 1</th>
+                <th>Wager 1</th>
+                <th>Offset 1</th>
+                <th>Net Win 1</th>
+
+                <th>Bookmaker 2</th>
+                <th>Bet 2</th>
+                <th>Odds 2</th>
+                <th>Wager 2</th>
+                <th>Offset 2</th>
+                <th>Net Win 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pairing in betPairings)
+            {
+            <tr>
+                <td>@pairing.Bet1.Bookmaker</td>
+                <td>@pairing.Bet1.OutcomeDescription</td>
+                <td>@pairing.Bet1.Odds</td>
+                <td>$@pairing.Bet1.Wager</td>
+                <td>$@pairing.Bet1.Offset</td>
+                <td>$@(pairing.Bet1.OutcomeDescription)</td>
+
+                <td>@pairing.Bet2.Bookmaker</td>
+                <td>@pairing.Bet2.OutcomeDescription</td>
+                <td>@pairing.Bet2.Odds</td>
+                <td>$@pairing.Bet2.Wager</td>
+                <td>$@pairing.Bet2.Offset</td>
+                <td>$@(pairing.Bet1.Wager)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private static Decimal CalcWin(int odds, Decimal wager)
+    {
+        return odds > 0 ? wager * (odds / 100) : wager / (-odds / 100);
+    }
+
+    private List<BetPairing> betPairings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            betPairings = await http.GetFromJsonAsync<List<BetPairing>>("/api/GetBetPairs");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+}
