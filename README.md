@@ -21,6 +21,7 @@ This project uses the following cloud services:
 - [Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) - ?
 - [Azure Functions](https://azure.microsoft.com/en-us/services/functions/)
 - [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/)
+	- [Azure Active Directory B2C](https://azure.microsoft.com/en-us/services/active-directory/external-identities/b2c/)
 - [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/)
 - [GitHub](https://github.com/)
 
@@ -44,3 +45,15 @@ Betting on both outcomes alone ensures a small loss because of house edge, but i
 Manually finding candidate parings can be time consuming: Doing so involves manually searching through and comparing the many potential candidates. A software program should be able to automate some of the search process and save time in the long term.
 
 However, automating searching requires web scraping of dynamic and irregular web site contents from the online casinos. I deem this too much a difficulty and opt to omit this aspect, and focus on basic functionality that I feel I can feasibly develop in time: taking manual entries, calculating projected profits and losses, and keeping the entries in cloud storage.
+
+### References
+
+### Azure Static Web Apps
+
+- [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/deploy-blazor)
+
+####  Azure Active Directory
+
+- [Azure AD B2C Quickstart with Visual Studio & Blazor](https://medium.com/marcus-tee-anytime/azure-ad-b2c-quickstart-with-visual-studio-blazor-563efdff6fdd)
+- [Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C](https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/standalone-with-azure-active-directory-b2c?view=aspnetcore-5.0)
+- [Set up sign-up and sign-in with a Microsoft account using Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-microsoft-account?pivots=b2c-user-flow)
