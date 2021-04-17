@@ -12,6 +12,8 @@ else
     <table class="table">
         <thead>
             <tr>
+                <th>Event Time</th>
+
                 <th>Bookmaker 1</th>
                 <th>Bet 1</th>
                 <th>Odds 1</th>
@@ -31,19 +33,21 @@ else
             @foreach (var pairing in betPairings)
             {
             <tr>
+                <td>@pairing.EventTime</td>
+
                 <td>@pairing.Bet1.Bookmaker</td>
                 <td>@pairing.Bet1.OutcomeDescription</td>
-                <td>@pairing.Bet1.Odds</td>
-                <td>$@pairing.Bet1.Wager</td>
-                <td>$@pairing.Bet1.Offset</td>
-                <td>$@(pairing.Bet1.OutcomeDescription)</td>
+                <td>@pairing.Bet1.Odds.ToString(OddsFormatString)</td>
+                <td>@pairing.Bet1.Wager.ToString(CurrencyFormatString)</td>
+                <td>@pairing.Bet1.Offset.ToString(CurrencyFormatString)</td>
+                <td>@pairing.Win1.ToString(CurrencyFormatString)</td>
 
                 <td>@pairing.Bet2.Bookmaker</td>
                 <td>@pairing.Bet2.OutcomeDescription</td>
-                <td>@pairing.Bet2.Odds</td>
-                <td>$@pairing.Bet2.Wager</td>
-                <td>$@pairing.Bet2.Offset</td>
-                <td>$@(pairing.Bet1.Wager)</td>
+                <td>@pairing.Bet2.Odds.ToString(OddsFormatString)</td>
+                <td>@pairing.Bet2.Wager.ToString(CurrencyFormatString)</td>
+                <td>@pairing.Bet2.Offset.ToString(CurrencyFormatString)</td>
+                <td>@pairing.Win2.ToString(CurrencyFormatString)</td>
             </tr>
             }
         </tbody>
@@ -52,12 +56,48 @@ else
 
 @code
 {
-    private static Decimal CalcWin(int odds, Decimal wager)
-    {
-        return odds > 0 ? wager * (odds / 100) : wager / (-odds / 100);
-    }
+    private const string OddsFormatString = "+#;-#;0";
+    private const string CurrencyFormatString = "C";
 
-    private List<BetPairing> betPairings;
+    private List<BetPairing> betPairings = new List<BetPairing>()
+    {
+        new BetPairing()
+        {
+            EventTime = DateTimeOffset.Parse("2021-04-16 19:05:00-0400"),
+            Bet1 = new Bet()
+            {
+                Bookmaker = "William Hill",
+                OutcomeDescription = "Washington Nationals Moneyline",
+                Odds = -190,
+                Wager = 50.00M
+            },
+            Bet2 = new Bet()
+            {
+                Bookmaker = "Caesars",
+                OutcomeDescription = "Arizona Diamonbacks Moneyline",
+                Odds = +175,
+                Wager = 27.75M
+            }
+        },
+        new BetPairing()
+        {
+            EventTime = DateTimeOffset.Parse("2021-04-16 21:40:00-0400"),
+            Bet1 = new Bet()
+            {
+                Bookmaker = "William Hill",
+                OutcomeDescription = "Philadelphia Phillies Moneyline",
+                Odds = -140,
+                Wager = 50.00M
+            },
+            Bet2 = new Bet()
+            {
+                Bookmaker = "Golden Nugget",
+                OutcomeDescription = "St. Louis Cardinals Moneyline",
+                Odds = +130,
+                Wager = 37.26M
+            }
+        }
+    };
 
     protected override async Task OnInitializedAsync()
     {
