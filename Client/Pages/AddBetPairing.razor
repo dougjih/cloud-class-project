@@ -1,0 +1,113 @@
+﻿@page "/addbetpairing"
+@using CloudClassProject.Shared
+@inject HttpClient http
+<h1>Add Bet Pairing</h1>
+
+<EditForm Model="betPairing">
+
+    <div class="form-group">
+        <label for="eventTime">Event Time</label>
+        <input @bind=betPairing.EventTime
+               format-value="yyyy-MM-ddTHH:mm"
+               class="form-control"
+               id="eventTime"
+               type="datetime-local" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet1-Bookmaker">Bet 1 Bookmaker</label>
+        <InputText @bind-Value="betPairing.Bet1.Bookmaker" class="form-control" id="Bet1-Bookmaker" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet1-OutcomeDescription">Bet 1 Outcome Description</label>
+        <InputText @bind-Value="betPairing.Bet1.OutcomeDescription" class="form-control" id="Bet1-OutcomeDescription" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet1-Odds">Bet 1 Odds</label>
+        <InputNumber @bind-Value="betPairing.Bet1.Odds" class="form-control" id="Bet1-Odds" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet1-Odds">Bet 1 Wager</label>
+        <InputNumber @bind-Value="betPairing.Bet1.Wager" class="form-control" id="Bet1-Wager" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet1-Odds">Bet 1 Offset</label>
+        <InputNumber @bind-Value="betPairing.Bet1.Offset" class="form-control" id="Bet1-Offset" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet2-Bookmaker">Bet 2 Bookmaker</label>
+        <InputText @bind-Value="betPairing.Bet2.Bookmaker" class="form-control" id="Bet2-Bookmaker" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet2-OutcomeDescription">Bet 2 Outcome Description</label>
+        <InputText @bind-Value="betPairing.Bet2.OutcomeDescription" class="form-control" id="Bet2-OutcomeDescription" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet2-Odds">Bet 2 Odds</label>
+        <InputNumber @bind-Value="betPairing.Bet2.Odds" class="form-control" id="Bet2-Odds" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet2-Odds">Bet 2 Wager</label>
+        <InputNumber @bind-Value="betPairing.Bet2.Wager" class="form-control" id="Bet2-Wager" />
+    </div>
+
+    <div class="form-group">
+        <label for="Bet2-Odds">Bet 2 Offset</label>
+        <InputNumber @bind-Value="betPairing.Bet2.Offset" class="form-control" id="Bet2-Offset" />
+    </div>
+
+    <div>
+        <button type="submit" @onclick="AddBetPairingAsync" class="btn btn-success">Add</button>
+    </div>
+
+    <div>
+        <p class="alert-info">@message</p>
+    </div>
+</EditForm>
+
+
+@code
+{
+    private string message = string.Empty;
+
+    private BetPairing betPairing = new BetPairing()
+    {
+        Bet1 = new Bet(),
+        Bet2 = new Bet()
+    };
+
+    private async Task AddBetPairingAsync()
+    {
+        try
+        {
+            message = string.Join(",",
+                betPairing.EventTime,
+                betPairing.Bet1.Bookmaker,
+                betPairing.Bet1.OutcomeDescription,
+                betPairing.Bet1.Odds,
+                betPairing.Bet1.Wager,
+                betPairing.Bet1.Offset,
+                betPairing.Bet2.Bookmaker,
+                betPairing.Bet2.OutcomeDescription,
+                betPairing.Bet2.Odds,
+                betPairing.Bet2.Wager,
+                betPairing.Bet2.Offset);
+
+            //message = "Adding the bet pairing...";
+            //var response = await http.PostAsJsonAsync("/api/AddBetPairing", betPairing);
+            //message = "Bet pairing added.";
+            }
+        catch (Exception ex)
+        {
+            message = $"Error: {ex.Message}";
+        }
+    }
+}
