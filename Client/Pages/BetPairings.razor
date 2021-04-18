@@ -59,51 +59,13 @@ else
     private const string OddsFormatString = "+#;-#;0";
     private const string CurrencyFormatString = "C";
 
-    private List<BetPairing> betPairings = new List<BetPairing>()
-    {
-        new BetPairing()
-        {
-            EventTime = DateTimeOffset.Parse("2021-04-16 19:05:00-0400"),
-            Bet1 = new Bet()
-            {
-                Bookmaker = "William Hill",
-                OutcomeDescription = "Washington Nationals Moneyline",
-                Odds = -190,
-                Wager = 50.00M
-            },
-            Bet2 = new Bet()
-            {
-                Bookmaker = "Caesars",
-                OutcomeDescription = "Arizona Diamonbacks Moneyline",
-                Odds = +175,
-                Wager = 27.75M
-            }
-        },
-        new BetPairing()
-        {
-            EventTime = DateTimeOffset.Parse("2021-04-16 21:40:00-0400"),
-            Bet1 = new Bet()
-            {
-                Bookmaker = "William Hill",
-                OutcomeDescription = "Philadelphia Phillies Moneyline",
-                Odds = -140,
-                Wager = 50.00M
-            },
-            Bet2 = new Bet()
-            {
-                Bookmaker = "Golden Nugget",
-                OutcomeDescription = "St. Louis Cardinals Moneyline",
-                Odds = +130,
-                Wager = 37.26M
-            }
-        }
-    };
+    private List<BetPairing> betPairings;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            betPairings = await http.GetFromJsonAsync<List<BetPairing>>("/api/GetBetPairs");
+            betPairings = await http.GetFromJsonAsync<List<BetPairing>>("/api/GetBetPairings");
         }
         catch (Exception ex)
         {
