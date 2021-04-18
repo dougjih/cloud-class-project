@@ -48,6 +48,10 @@ However, automating searching requires web scraping of dynamic and irregular web
 
 ### References
 
+### Overall
+
+- [Build a Student Feedback Analyzer with Blazor, Azure Functions, Azure Static Web Apps and Azure Cognitive Services](https://dev.to/ashirwadsatapathi/build-a-student-feedback-analyzer-with-blazor-azure-functions-azure-static-web-apps-and-azure-cognitive-services-4acj)
+
 ### Azure Static Web Apps
 
 - [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/deploy-blazor)
