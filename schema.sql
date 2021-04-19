@@ -1,0 +1,46 @@
+/****** Object:  Table [dbo].[Bet]    Script Date: 2021-04-18 22:22:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Bet](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Bookmaker] [varchar](max) NOT NULL,
+	[OutcomeDescription] [varchar](max) NOT NULL,
+	[Odds] [int] NOT NULL,
+	[Wager] [decimal](9, 2) NOT NULL,
+	[Offset] [decimal](9, 2) NOT NULL,
+ CONSTRAINT [PK_Bet] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BetPairing]    Script Date: 2021-04-18 22:22:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BetPairing](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Bet1] [int] NOT NULL,
+	[Bet2] [int] NOT NULL,
+	[EventTime] [datetimeoffset](7) NOT NULL,
+ CONSTRAINT [PK_BetPairing] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[BetPairing]  WITH CHECK ADD  CONSTRAINT [FK_Bet1] FOREIGN KEY([Bet1])
+REFERENCES [dbo].[Bet] ([Id])
+GO
+ALTER TABLE [dbo].[BetPairing] CHECK CONSTRAINT [FK_Bet1]
+GO
+ALTER TABLE [dbo].[BetPairing]  WITH CHECK ADD  CONSTRAINT [FK_Bet2] FOREIGN KEY([Bet2])
+REFERENCES [dbo].[Bet] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[BetPairing] CHECK CONSTRAINT [FK_Bet2]
+GO
