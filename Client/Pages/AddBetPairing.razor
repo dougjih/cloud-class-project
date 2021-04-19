@@ -88,23 +88,10 @@
     {
         try
         {
-            message = string.Join(",",
-                betPairing.EventTime,
-                betPairing.Bet1.Bookmaker,
-                betPairing.Bet1.OutcomeDescription,
-                betPairing.Bet1.Odds,
-                betPairing.Bet1.Wager,
-                betPairing.Bet1.Offset,
-                betPairing.Bet2.Bookmaker,
-                betPairing.Bet2.OutcomeDescription,
-                betPairing.Bet2.Odds,
-                betPairing.Bet2.Wager,
-                betPairing.Bet2.Offset);
-
-            //message = "Adding the bet pairing...";
-            //var response = await http.PostAsJsonAsync("/api/AddBetPairing", betPairing);
-            //message = "Bet pairing added.";
-            }
+            message = "Adding the bet pairing...";
+            var response = await http.PostAsJsonAsync("/api/AddBetPairing", betPairing);
+            message = "Bet pairing added.";
+        }
         catch (Exception ex)
         {
             message = $"Error: {ex.Message}";
