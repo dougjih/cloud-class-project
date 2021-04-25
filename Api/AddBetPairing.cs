@@ -2,7 +2,7 @@ using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
-using CloudClassProject.Shared;
+using BlazorApp.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

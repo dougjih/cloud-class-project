@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
-using CloudClassProject.Shared;
+using BlazorApp.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Api
+namespace BlazorApp.Api
 {
     public static class GetBetPairings
     {

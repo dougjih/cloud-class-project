@@ -33,9 +33,12 @@ This project uses the following software development tools:
 
 
 ### Challenges
-The number of choices in cloud services is ***vast***. As a brand new cloud developer, I had a temporary paralysis by indecision and procrastination because of the uncertainty and doubts I felt. Pressure of the deadline eventually resolved the problem.
+The number of choices in cloud services is ***vast***. As a completely new cloud software developer, I had a paralysis by indecision and procrastination because of the uncertainty and doubts I felt. Pressure of the deadline eventually resolved the problem.
 
-At first, I looked at using AWS with the "classroom" account, but I ended up using an Azure free trial account because certain aspects of an AWS classroom account (such as IAM) worked differently from a regular account, and I did not want to spend time figuring it out when tutorials did not work. Also, because I chose to use Blazor for my web app development, and Blazor is a Microsoft product, Azure offers an easier deployment experience.
+At first, I looked at using AWS with the "classroom" account, but I ended up using an Azure free trial account because certain aspects of an AWS classroom account (such as IAM) worked differently from a regular account, and I did not want to spend time figuring it out when tutorials did not work. Also, because I chose to use Blazor for my web app development because I had experiece with using .NET and C# for desktop software development; and because Blazor is a Microsoft product, and Azure offers a more integrated deployment experience.
+
+Neverthess, I encountered a a lot of difficulties getting anything to work beyond the pre-made examples in tutorials. Getting different components to work together was hard for me. I am not sure why.
+
 
 ### Background & Motivation
 Sports betting is legal in New Jersey. It is possible to make small profits with sports betting without relying on luck by making use of promotional offers and betting on both outcomes of a two-outcome event at different casinos.

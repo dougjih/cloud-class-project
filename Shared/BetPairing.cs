@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CloudClassProject.Shared
+namespace BlazorApp.Shared
 {
     public class BetPairing
     {
