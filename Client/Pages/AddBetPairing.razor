@@ -14,6 +14,8 @@
                type="datetime-local" />
     </div>
 
+    <hr />
+
     <div class="form-group">
         <label for="Bet1-Bookmaker">Bet 1 Bookmaker</label>
         <InputText @bind-Value="betPairing.Bet1.Bookmaker" class="form-control" id="Bet1-Bookmaker" />
@@ -38,6 +40,12 @@
         <label for="Bet1-Odds">Bet 1 Offset</label>
         <InputNumber @bind-Value="betPairing.Bet1.Offset" class="form-control" id="Bet1-Offset" />
     </div>
+
+    <div>
+        <button @onclick="CalcBet2Wager" class="btn btn-primary">Calculate Bet 2 Wager</button>
+    </div>
+
+    <hr />
 
     <div class="form-group">
         <label for="Bet2-Bookmaker">Bet 2 Bookmaker</label>
@@ -65,6 +73,12 @@
     </div>
 
     <div>
+        <button @onclick="CalcBet1Wager" class="btn btn-primary">Calculate Bet 1 Wager</button>
+    </div>
+
+    <hr />
+
+    <div>
         <button type="submit" @onclick="AddBetPairingAsync" class="btn btn-success">Add</button>
     </div>
 
@@ -83,6 +97,16 @@
         Bet1 = new Bet(),
         Bet2 = new Bet()
     };
+
+    private void CalcBet1Wager()
+    {
+        betPairing.Bet1.Wager = Math.Round(BetCalc.CalcBalancedWager(betPairing.Bet2, betPairing.Bet1), 2);
+    }
+
+    private void CalcBet2Wager()
+    {
+        betPairing.Bet2.Wager = Math.Round(BetCalc.CalcBalancedWager(betPairing.Bet1, betPairing.Bet2), 2);
+    }
 
     private async Task AddBetPairingAsync()
     {

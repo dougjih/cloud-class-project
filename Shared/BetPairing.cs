@@ -10,17 +10,12 @@ namespace BlazorApp.Shared
         
         public decimal Win1
         {
-            get => CalcWin(Bet1.Odds, Bet1.Wager) + Bet1.Offset - Bet2.Wager;
+            get => Math.Round(BetCalc.CalcWin(Bet1.Odds, Bet1.Wager) + Bet1.Offset - Bet2.Wager, 2);
         }
 
         public decimal Win2
         {
-            get => CalcWin(Bet2.Odds, Bet2.Wager) + Bet2.Offset - Bet1.Wager;
-        }
-
-        private static decimal CalcWin(int odds, decimal wager)
-        {
-            return Math.Round(odds > 0 ? wager * (odds / 100M) : wager / (-odds / 100M), 2);
+            get => Math.Round(BetCalc.CalcWin(Bet2.Odds, Bet2.Wager) + Bet2.Offset - Bet1.Wager, 2);
         }
     }
 }
