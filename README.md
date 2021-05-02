@@ -14,29 +14,28 @@ The is a cloud web app that helps the user identify and track sports betting pai
 1. The app provides account creation and sign-in to allow multiple users to have separate and private books.
 1. The app runs in a modern web browser and requires no explicit installation of software.
 
-## Design Overview
+## Design
 
-This project uses the following cloud services:
-- [Azure Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/) - PaaS web app service that hosts a static front end web page connected to a dynamic back end of APIs, with streamlined CI/CD integration with GitHub
-- [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) - PaaS service that allows code execution through a web API
-- [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/)
-	- [Azure Active Directory B2C](https://azure.microsoft.com/en-us/services/active-directory/external-identities/b2c/) - PaaS service that provides identity management services
-- [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) - PaaS service that provides relational databases
-- [GitHub](https://github.com/) - SaaS/PaaS service that hosts git repositories and provides a CI/CD platform
+![design overview](./doc/overview.svg)
 
-This project uses the following software development tools:
-- [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) - a Microsoft web framework that enables programming of single-page web apps using .NET and C#
+This project uses [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor), a web framework that enables programming of single-page web apps using .NET and C#. It uses the Web Assembly type of Blazor, meaning that the app runs entirely in the web browser with no corresponding server side of the app.
+
+This project uses [GitHub](https://github.com/) for code repository hosting and CD/CI. Upon a push of a new commit, the CI/CD action deploys the new code.
+
+This project uses the following Azure cloud services:
+- [Azure Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/) - This PaaS web app service hosts a static front end web page connected to a dynamic back end of APIs, with streamlined CI/CD integration with GitHub. The service is designed to scale automatically to demand.
+- [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) - This PaaS service enables the back end APIs that allow code execution invoked by web requests. This project uses Azure Functions for the web app to perform access to the SQL database.
+- [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) - This PaaS service can provide a relational database in a managed, serverless configuration. This project uses the database to persist its data.
+- [Azure Active Directory B2C](https://azure.microsoft.com/en-us/services/active-directory/external-identities/b2c/) - This PaaS service provides identity management services. This project uses the service to provide user sign up and sign in.
+
+This project uses the following software development tool:
 - [Visual Studio](https://visualstudio.microsoft.com/) - a Microsoft integrated development environment (IDE)
 
 ## Discussions
 
-### Blazor
+Blazor seems like a useful technology that brings .NET programming to web apps. But it has been changing quickly and I find its documentation not that easy to understand.
 
-Blazor seems like a useful technology to enable using .NET programming in web apps. But it has been changing quickly and I find its documentation not that easy to understand.
-
-### Azure Static Web Apps
-
-This service makes deployment of scalable web apps easy. Its integration with GitHub makes setting up the basic CI/CD very easy.
+Azure Static Web Apps makes deployment of scalable web apps easy, and its integration with GitHub makes setting up the basic CI/CD easy.
 
 ### SQL Database
 
@@ -44,11 +43,11 @@ I configured the SQL Database for the project to be "General Purpose: Serverless
 
 A problem with the configuration of the database is that it has a significant cold-start delay. I have noticed that it can take around half a minute to become ready, if it has not been used in more than an hour (configurable) and is paused. This is the price for minimizing uptime and the cost associated with it.
 
-For the tiny usage of the SQL Database, I feel it has been quite expensive. I think I configured everything at the least expensive tier.
+For the tiny usage of the SQL Database, I feel it has been quite expensive, even though I think I configured everything at the least expensive tier.
 
 ### Active Directory B2C
 
-This allows the "out-sourcing" of identity management to a service, and looks very useful.
+This allows the "out-sourcing" of identity management to a service, and looks very useful. However, I was unable to work out its integration with the web app in the time I had.
 
 ### Challenges
 The number of choices in cloud services is ***vast***. Although I have been a software developer at work for about ten years for software specific to the business, I was completely new to cloud software development, and I had a paralysis by indecision and procrastination because of the uncertainty and doubts I felt. Pressure of the deadline eventually resolved the problem, but the delay was costly.
@@ -58,7 +57,6 @@ At first, I looked at using AWS with the "classroom" account, but I ended up usi
 Nevertheless, I encountered a lot of difficulties getting anything to work beyond the pre-made examples in tutorials. Getting different components to work together often did not work, and troubleshooting was time-consuming. 
 
 I felt that I did not have time to get a solid foundation of understanding on the technologies I was trying to use, but rather I was just trying to get something to work by imitation and trials and errors. That made for a frustrating experience. Although this was unpleasant, this was also useful in reminding me how the newer members at work might feel, and that I should be more proactive in offering to guide them.
-
 
 ### Background & Motivation
 Sports betting is legal in New Jersey. It is possible to make small profits with sports betting without relying on luck by making use of promotional offers and betting on both outcomes of a two-outcome event at different casinos.
