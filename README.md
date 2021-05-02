@@ -1,6 +1,8 @@
-# Cloud Computing Project
+# Cloud Class Project
 50:198:541 Parallel, Distributed, Grid, and Cloud Computing with Ian Lebbern, Rutgers University-Camden, Spring 2021  
 Doug Jih
+
+[Deployment Site](https://proud-pond-036294e0f.azurestaticapps.net)
 
 ## Objective
 Design and implement a cloud application to demonstrate using cloud services.
